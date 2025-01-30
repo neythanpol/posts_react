@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Comentarios from "./Comentarios";
 
 function Posts() {
     const [posts, setPosts] = useState([]);
@@ -31,16 +32,17 @@ function Posts() {
     }, [posts]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Cargando...</div>;
     }
 
     return (
         <div className="post-list">
             {posts.map(post => (
                 <div className="post" key={post.id}>
-                    <h2>{users[post.userId]}</h2>
                     <h1>{post.title}</h1>
                     <p>{post.body}</p>
+                    <p><strong>Autor:</strong> {users[post.userId]}</p>
+                    <Comentarios postId={post.id} />
                 </div>
             ))}
         </div>
